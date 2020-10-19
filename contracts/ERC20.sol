@@ -98,12 +98,12 @@ contract ERC20 {
         returns (bool)
     {
 	require(value <= _allowed[from][msg.sender]);
-        
+
         _allowed[from][msg.sender] = _allowed[from][msg.sender].sub(value);
         _transfer(from, to, value);
         return true;
     }
-    
+
     /**
      * @dev Increase the amount of tokens that an owner allowed to a spender.
      * approve should be called when allowed_[_spender] == 0. To increment
@@ -157,6 +157,20 @@ contract ERC20 {
         _balances[from] = _balances[from].sub(value);
         _balances[to] = _balances[to].add(value);
         emit Transfer(from, to, value);
+    }
+
+    /**
+     * @dev Internal function that mints an amount of the token and assigns it to
+     * an account. This encapsulates the modification of balances such that the
+     * proper events are emitted.
+     * @param account The account that will receive the created tokens.
+     * @param value The amount that will be created.
+     */
+    function _mint(address account, uint256 value) internal {
+        require(account != address(0));
+        _totalSupply = _totalSupply.add(value);
+        _balances[account] = _balances[account].add(value);
+        emit Transfer(address(0), account, value);
     }
 }
 
