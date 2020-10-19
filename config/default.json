@@ -1,0 +1,20 @@
+{
+    "rinkeby": {
+        "blockchain": {
+            "rpc": "https://rinkeby.infura.io",
+            "networkId": 4
+        },
+        "truffle": {
+            "privateKey": ""
+        }
+    },
+    "mainnet": {
+        "blockchain": {
+            "rpc": "https://mainnet.infura.io",
+            "networkId": 1
+        },
+        "truffle": {
+            "privateKey": ""
+        }
+    }
+}
