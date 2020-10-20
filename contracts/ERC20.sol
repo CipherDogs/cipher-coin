@@ -12,23 +12,19 @@ import "./SafeMath.sol";
 contract ERC20 {
     using SafeMath for uint256;
 
-    mapping (address => uint256) private _balances;
+    mapping(address => uint256) private _balances;
 
-    mapping (address => mapping (address => uint256)) private _allowed;
+    mapping(address => mapping(address => uint256)) private _allowed;
 
     uint256 private _totalSupply;
 
-    event Transfer(
-                   address indexed from,
-                   address indexed to,
-                   uint256 value
-                   );
+    event Transfer(address indexed from, address indexed to, uint256 value);
 
     event Approval(
-                   address indexed owner,
-                   address indexed spender,
-                   uint256 value
-                   );
+        address indexed owner,
+        address indexed spender,
+        uint256 value
+    );
 
     /**
      * @dev Total number of tokens in existence
@@ -93,11 +89,12 @@ contract ERC20 {
      * @param to address The address which you want to transfer to
      * @param value uint256 the amount of tokens to be transferred
      */
-    function transferFrom(address from, address to, uint256 value)
-	public
-        returns (bool)
-    {
-	require(value <= _allowed[from][msg.sender]);
+    function transferFrom(
+        address from,
+        address to,
+        uint256 value
+    ) public returns (bool) {
+        require(value <= _allowed[from][msg.sender]);
 
         _allowed[from][msg.sender] = _allowed[from][msg.sender].sub(value);
         _transfer(from, to, value);
@@ -119,7 +116,9 @@ contract ERC20 {
     {
         require(spender != address(0));
 
-        _allowed[msg.sender][spender] = (_allowed[msg.sender][spender].add(addedValue));
+        _allowed[msg.sender][spender] = (
+            _allowed[msg.sender][spender].add(addedValue)
+        );
         emit Approval(msg.sender, spender, _allowed[msg.sender][spender]);
         return true;
     }
@@ -139,7 +138,9 @@ contract ERC20 {
     {
         require(spender != address(0));
 
-        _allowed[msg.sender][spender] = (_allowed[msg.sender][spender].sub(subtractedValue));
+        _allowed[msg.sender][spender] = (
+            _allowed[msg.sender][spender].sub(subtractedValue)
+        );
         emit Approval(msg.sender, spender, _allowed[msg.sender][spender]);
         return true;
     }
@@ -150,7 +151,11 @@ contract ERC20 {
      * @param to The address to transfer to.
      * @param value The amount to be transferred.
      */
-    function _transfer(address from, address to, uint256 value) internal {
+    function _transfer(
+        address from,
+        address to,
+        uint256 value
+    ) internal {
         require(value <= _balances[from]);
         require(to != address(0));
 
@@ -179,7 +184,12 @@ contract MyERC20 is ERC20 {
     string private _symbol;
     uint8 private _decimals;
 
-    constructor (string memory name, string memory symbol, uint8 decimals, uint256 cap) public {
+    constructor(
+        string memory name,
+        string memory symbol,
+        uint8 decimals,
+        uint256 cap
+    ) public {
         _name = name;
         _symbol = symbol;
         _decimals = decimals;

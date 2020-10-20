@@ -5,6 +5,7 @@
   "scripts": {
     "test": "truffle test",
     "lint": "solhint contracts/**/*.sol",
+    "prettier": "prettier --write **/*.sol",
     "build": "truffle compile",
     "migration": "truffle migration",
     "deploy:rinkeby": "truffle deploy --network rinkeby --reset",
@@ -24,9 +25,13 @@
     "bignumber.js": "^8.1.1",
     "config": "^3.1.0",
     "ganache-cli": "^6.4.2",
-    "solhint": "^3.2.2",
     "truffle": "^5.0.13",
     "truffle-hdwallet-provider": "^1.0.6",
     "web3-provider-engine": "^15.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.1.2",
+    "prettier-plugin-solidity": "^1.0.0-alpha.59",
+    "solhint": "^3.2.2"
   }
 }
