@@ -18,6 +18,8 @@ module.exports = {
                 return w
             },
             network_id: config.get('rinkeby.blockchain.networkId'),
+            gas: 4000000,
+            gasPrice: 10000000000000
         },
         mainnet: {
             provider: function () {
@@ -28,6 +30,8 @@ module.exports = {
                 return w
             },
             network_id: config.get('mainnet.blockchain.networkId'),
+            gas: 2000000,
+            gasPrice: 60000000000
         },
     },
     compilers: {
